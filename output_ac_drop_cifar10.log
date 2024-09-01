@@ -1,0 +1,830 @@
+
+===== Global Model Architecture (CNN) =====
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ conv2d (Conv2D)                      │ (None, 32, 32, 32)          │             896 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization                  │ (None, 32, 32, 32)          │             128 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_1 (Conv2D)                    │ (None, 30, 30, 32)          │           9,248 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d (MaxPooling2D)         │ (None, 15, 15, 32)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 15, 15, 32)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_2 (Conv2D)                    │ (None, 15, 15, 64)          │          18,496 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization_1                │ (None, 15, 15, 64)          │             256 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_3 (Conv2D)                    │ (None, 13, 13, 64)          │          36,928 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d_1 (MaxPooling2D)       │ (None, 6, 6, 64)            │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 6, 6, 64)            │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ flatten (Flatten)                    │ (None, 2304)                │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 512)                 │       1,180,160 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 10)                  │           5,130 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 1,251,242 (4.77 MB)
+ Trainable params: 1,251,050 (4.77 MB)
+ Non-trainable params: 192 (768.00 B)
+
+
+===== NonIID Data Distribution =====
+Data distributed among 100 clients 
+
+Client ID: 0, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 1, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 2, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 3, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 4, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 5, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 6, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 7, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 8, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 9, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 10, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 11, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 12, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 13, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 14, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 15, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 16, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 17, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 18, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 19, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 20, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 21, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 22, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 23, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 24, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 25, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 26, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 27, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 28, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 29, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 30, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 31, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 32, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 33, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 34, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 35, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 36, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 37, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 38, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 39, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 40, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 41, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 42, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 43, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 44, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 45, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 46, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 47, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 48, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 49, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 50, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 51, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 52, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 53, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 54, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 55, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 56, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 57, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 58, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 59, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 60, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 61, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 62, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 63, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 64, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 65, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 66, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 67, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 68, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 69, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 70, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 71, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 72, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 73, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 74, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 75, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 76, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 77, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 78, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 79, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 80, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 81, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 82, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 83, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 84, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 85, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 86, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 87, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 88, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 89, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 90, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 91, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 92, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 93, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 94, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 95, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 96, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 97, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 98, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 99, Data Size (Number of Samples): 500, Unique Labels: [9]
+
+===== Starting FedAvg on CIFAR10 for 100 Training Rounds =====
+Round 1/100
+Accuracy: 0.0859, 	 Round Time:  48422.059 msec
+Round 2/100
+Accuracy: 0.1016, 	 Round Time:  44845.103 msec
+Round 3/100
+Accuracy: 0.0891, 	 Round Time:  44694.197 msec
+Round 4/100
+Accuracy: 0.0921, 	 Round Time:  44660.267 msec
+Round 5/100
+Accuracy: 0.0945, 	 Round Time:  44425.288 msec
+Round 6/100
+Accuracy: 0.0982, 	 Round Time:  44711.558 msec
+Round 7/100
+Accuracy: 0.1067, 	 Round Time:  44772.854 msec
+Round 8/100
+Accuracy: 0.1093, 	 Round Time:  44619.997 msec
+Round 9/100
+Accuracy: 0.1115, 	 Round Time:  44455.758 msec
+Round 10/100
+Accuracy: 0.1137, 	 Round Time:  44438.160 msec
+Round 11/100
+Accuracy: 0.1166, 	 Round Time:  44385.447 msec
+Round 12/100
+Accuracy: 0.1238, 	 Round Time:  44446.511 msec
+Round 13/100
+Accuracy: 0.1227, 	 Round Time:  44518.734 msec
+Round 14/100
+Accuracy: 0.1239, 	 Round Time:  44661.535 msec
+Round 15/100
+Accuracy: 0.1284, 	 Round Time:  44457.088 msec
+Round 16/100
+Accuracy: 0.1322, 	 Round Time:  44463.655 msec
+Round 17/100
+Accuracy: 0.1333, 	 Round Time:  44595.277 msec
+Round 18/100
+Accuracy: 0.1343, 	 Round Time:  44383.165 msec
+Round 19/100
+Accuracy: 0.1376, 	 Round Time:  44658.865 msec
+Round 20/100
+Accuracy: 0.1375, 	 Round Time:  44575.115 msec
+Round 21/100
+Accuracy: 0.1411, 	 Round Time:  44566.930 msec
+Round 22/100
+Accuracy: 0.1403, 	 Round Time:  45393.886 msec
+Round 23/100
+Accuracy: 0.1409, 	 Round Time:  44609.535 msec
+Round 24/100
+Accuracy: 0.1414, 	 Round Time:  44711.636 msec
+Round 25/100
+Accuracy: 0.1390, 	 Round Time:  44717.417 msec
+Round 26/100
+Accuracy: 0.1407, 	 Round Time:  44786.363 msec
+Round 27/100
+Accuracy: 0.1429, 	 Round Time:  44545.587 msec
+Round 28/100
+Accuracy: 0.1444, 	 Round Time:  44674.177 msec
+Round 29/100
+Accuracy: 0.1458, 	 Round Time:  44799.564 msec
+Round 30/100
+Accuracy: 0.1477, 	 Round Time:  44804.466 msec
+Round 31/100
+Accuracy: 0.1479, 	 Round Time:  44683.692 msec
+Round 32/100
+Accuracy: 0.1491, 	 Round Time:  45382.669 msec
+Round 33/100
+Accuracy: 0.1519, 	 Round Time:  45282.058 msec
+Round 34/100
+Accuracy: 0.1548, 	 Round Time:  45360.818 msec
+Round 35/100
+Accuracy: 0.1578, 	 Round Time:  45647.075 msec
+Round 36/100
+Accuracy: 0.1610, 	 Round Time:  45354.894 msec
+Round 37/100
+Accuracy: 0.1619, 	 Round Time:  45292.721 msec
+Round 38/100
+Accuracy: 0.1656, 	 Round Time:  45419.401 msec
+Round 39/100
+Accuracy: 0.1698, 	 Round Time:  45340.644 msec
+Round 40/100
+Accuracy: 0.1752, 	 Round Time:  45274.236 msec
+Round 41/100
+Accuracy: 0.1774, 	 Round Time:  45206.036 msec
+Round 42/100
+Accuracy: 0.1826, 	 Round Time:  45487.844 msec
+Round 43/100
+Accuracy: 0.1863, 	 Round Time:  45470.022 msec
+Round 44/100
+Accuracy: 0.1896, 	 Round Time:  45513.410 msec
+Round 45/100
+Accuracy: 0.1922, 	 Round Time:  45243.665 msec
+Round 46/100
+Accuracy: 0.1986, 	 Round Time:  45590.953 msec
+Round 47/100
+Accuracy: 0.2032, 	 Round Time:  45602.096 msec
+Round 48/100
+Accuracy: 0.2055, 	 Round Time:  45598.642 msec
+Round 49/100
+Accuracy: 0.2086, 	 Round Time:  45207.623 msec
+Round 50/100
+Accuracy: 0.2117, 	 Round Time:  45526.483 msec
+Round 51/100
+Accuracy: 0.2163, 	 Round Time:  45664.810 msec
+Round 52/100
+Accuracy: 0.2203, 	 Round Time:  45648.067 msec
+Round 53/100
+Accuracy: 0.2215, 	 Round Time:  45754.102 msec
+Round 54/100
+Accuracy: 0.2261, 	 Round Time:  45339.546 msec
+Round 55/100
+Accuracy: 0.2297, 	 Round Time:  45312.849 msec
+Round 56/100
+Accuracy: 0.2330, 	 Round Time:  45626.854 msec
+Round 57/100
+Accuracy: 0.2344, 	 Round Time:  45504.261 msec
+Round 58/100
+Accuracy: 0.2368, 	 Round Time:  45615.821 msec
+Round 59/100
+Accuracy: 0.2379, 	 Round Time:  45487.980 msec
+Round 60/100
+Accuracy: 0.2429, 	 Round Time:  45515.556 msec
+Round 61/100
+Accuracy: 0.2496, 	 Round Time:  45484.059 msec
+Round 62/100
+Accuracy: 0.2549, 	 Round Time:  45366.576 msec
+Round 63/100
+Accuracy: 0.2579, 	 Round Time:  45203.863 msec
+Round 64/100
+Accuracy: 0.2595, 	 Round Time:  45521.873 msec
+Round 65/100
+Accuracy: 0.2607, 	 Round Time:  45308.667 msec
+Round 66/100
+Accuracy: 0.2635, 	 Round Time:  47290.094 msec
+Round 67/100
+Accuracy: 0.2660, 	 Round Time:  45208.522 msec
+Round 68/100
+Accuracy: 0.2692, 	 Round Time:  45054.069 msec
+Round 69/100
+Accuracy: 0.2725, 	 Round Time:  45384.851 msec
+Round 70/100
+Accuracy: 0.2720, 	 Round Time:  45301.402 msec
+Round 71/100
+Accuracy: 0.2750, 	 Round Time:  45049.612 msec
+Round 72/100
+Accuracy: 0.2752, 	 Round Time:  45031.945 msec
+Round 73/100
+Accuracy: 0.2774, 	 Round Time:  44892.904 msec
+Round 74/100
+Accuracy: 0.2798, 	 Round Time:  44838.056 msec
+Round 75/100
+Accuracy: 0.2792, 	 Round Time:  44966.442 msec
+Round 76/100
+Accuracy: 0.2804, 	 Round Time:  44800.848 msec
+Round 77/100
+Accuracy: 0.2798, 	 Round Time:  44883.401 msec
+Round 78/100
+Accuracy: 0.2819, 	 Round Time:  44713.340 msec
+Round 79/100
+Accuracy: 0.2822, 	 Round Time:  44791.093 msec
+Round 80/100
+Accuracy: 0.2840, 	 Round Time:  45104.731 msec
+Round 81/100
+Accuracy: 0.2835, 	 Round Time:  44776.253 msec
+Round 82/100
+Accuracy: 0.2866, 	 Round Time:  44708.360 msec
+Round 83/100
+Accuracy: 0.2908, 	 Round Time:  44889.925 msec
+Round 84/100
+Accuracy: 0.2914, 	 Round Time:  44664.990 msec
+Round 85/100
+Accuracy: 0.2920, 	 Round Time:  44945.411 msec
+Round 86/100
+Accuracy: 0.2918, 	 Round Time:  44806.680 msec
+Round 87/100
+Accuracy: 0.2933, 	 Round Time:  44957.969 msec
+Round 88/100
+Accuracy: 0.2937, 	 Round Time:  45012.941 msec
+Round 89/100
+Accuracy: 0.2974, 	 Round Time:  44768.377 msec
+Round 90/100
+Accuracy: 0.3010, 	 Round Time:  44648.302 msec
+Round 91/100
+Accuracy: 0.3014, 	 Round Time:  44581.430 msec
+Round 92/100
+Accuracy: 0.3022, 	 Round Time:  45059.398 msec
+Round 93/100
+Accuracy: 0.2992, 	 Round Time:  44766.303 msec
+Round 94/100
+Accuracy: 0.3021, 	 Round Time:  44855.707 msec
+Round 95/100
+Accuracy: 0.3048, 	 Round Time:  44725.947 msec
+Round 96/100
+Accuracy: 0.3064, 	 Round Time:  44632.098 msec
+Round 97/100
+Accuracy: 0.3097, 	 Round Time:  45003.710 msec
+Round 98/100
+Accuracy: 0.3095, 	 Round Time:  45211.259 msec
+Round 99/100
+Accuracy: 0.3079, 	 Round Time:  45352.846 msec
+Round 100/100
+Accuracy: 0.3109, 	 Round Time:  45549.492 msec
+Final test accuracy: 0.3109, 	 Total FL Time:  4573655.499 msec
+
+===== Global Model Architecture (2NN) =====
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ conv2d (Conv2D)                      │ (None, 32, 32, 32)          │             896 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization                  │ (None, 32, 32, 32)          │             128 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_1 (Conv2D)                    │ (None, 30, 30, 32)          │           9,248 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d (MaxPooling2D)         │ (None, 15, 15, 32)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 15, 15, 32)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_2 (Conv2D)                    │ (None, 15, 15, 64)          │          18,496 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization_1                │ (None, 15, 15, 64)          │             256 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_3 (Conv2D)                    │ (None, 13, 13, 64)          │          36,928 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d_1 (MaxPooling2D)       │ (None, 6, 6, 64)            │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 6, 6, 64)            │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ flatten (Flatten)                    │ (None, 2304)                │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 512)                 │       1,180,160 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 10)                  │           5,130 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 1,251,242 (4.77 MB)
+ Trainable params: 1,251,050 (4.77 MB)
+ Non-trainable params: 192 (768.00 B)
+
+
+===== NonIID Data Distribution =====
+Data distributed among 100 clients 
+
+Client ID: 0, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 1, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 2, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 3, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 4, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 5, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 6, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 7, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 8, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 9, Data Size (Number of Samples): 500, Unique Labels: [0]
+Client ID: 10, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 11, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 12, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 13, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 14, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 15, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 16, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 17, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 18, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 19, Data Size (Number of Samples): 500, Unique Labels: [1]
+Client ID: 20, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 21, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 22, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 23, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 24, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 25, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 26, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 27, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 28, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 29, Data Size (Number of Samples): 500, Unique Labels: [2]
+Client ID: 30, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 31, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 32, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 33, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 34, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 35, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 36, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 37, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 38, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 39, Data Size (Number of Samples): 500, Unique Labels: [3]
+Client ID: 40, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 41, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 42, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 43, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 44, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 45, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 46, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 47, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 48, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 49, Data Size (Number of Samples): 500, Unique Labels: [4]
+Client ID: 50, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 51, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 52, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 53, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 54, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 55, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 56, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 57, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 58, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 59, Data Size (Number of Samples): 500, Unique Labels: [5]
+Client ID: 60, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 61, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 62, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 63, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 64, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 65, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 66, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 67, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 68, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 69, Data Size (Number of Samples): 500, Unique Labels: [6]
+Client ID: 70, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 71, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 72, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 73, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 74, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 75, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 76, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 77, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 78, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 79, Data Size (Number of Samples): 500, Unique Labels: [7]
+Client ID: 80, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 81, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 82, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 83, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 84, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 85, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 86, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 87, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 88, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 89, Data Size (Number of Samples): 500, Unique Labels: [8]
+Client ID: 90, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 91, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 92, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 93, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 94, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 95, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 96, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 97, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 98, Data Size (Number of Samples): 500, Unique Labels: [9]
+Client ID: 99, Data Size (Number of Samples): 500, Unique Labels: [9]
+
+===== Starting ACCESS-FL (dropp out scenario) on CIFAR10 for 100 Training Rounds =====
+Round 1/100
+distance: 8
+Accuracy: 0.0840, 	 Round Time:  52173.657 msec
+Round 2/100
+distance: 6
+Accuracy: 0.1018, 	 Round Time:  47943.947 msec
+Round 3/100
+distance: 20
+Accuracy: 0.0893, 	 Round Time:  47703.699 msec
+Round 4/100
+distance: 4
+Accuracy: 0.0916, 	 Round Time:  47679.156 msec
+Round 5/100
+distance: 9
+Accuracy: 0.0945, 	 Round Time:  47555.088 msec
+Round 6/100
+distance: 27
+Accuracy: 0.0971, 	 Round Time:  47862.688 msec
+Round 7/100
+distance: 36
+Accuracy: 0.1028, 	 Round Time:  48069.029 msec
+Round 8/100
+distance: 6
+Accuracy: 0.1065, 	 Round Time:  48039.456 msec
+Round 9/100
+distance: 22
+Accuracy: 0.1091, 	 Round Time:  48159.585 msec
+Round 10/100
+distance: 8
+Client 87 dropped out
+participating_list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+dropout_count: 1
+new distance: 38
+Accuracy: 0.1129, 	 Round Time:  50638.817 msec
+Round 11/100
+distance: 22
+Accuracy: 0.1187, 	 Round Time:  47400.534 msec
+Round 12/100
+distance: 39
+Accuracy: 0.1222, 	 Round Time:  47629.023 msec
+Round 13/100
+distance: 31
+Accuracy: 0.1233, 	 Round Time:  47786.557 msec
+Round 14/100
+distance: 13
+Accuracy: 0.1273, 	 Round Time:  47192.657 msec
+Round 15/100
+distance: 2
+Accuracy: 0.1274, 	 Round Time:  47144.642 msec
+Round 16/100
+distance: 20
+Accuracy: 0.1300, 	 Round Time:  47526.327 msec
+Round 17/100
+distance: 42
+Accuracy: 0.1325, 	 Round Time:  47571.718 msec
+Round 18/100
+distance: 30
+Accuracy: 0.1345, 	 Round Time:  47596.782 msec
+Round 19/100
+distance: 21
+Accuracy: 0.1362, 	 Round Time:  47509.148 msec
+Round 20/100
+distance: 38
+Client 35 dropped out
+participating_list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+dropout_count: 2
+new distance: 47
+Accuracy: 0.1347, 	 Round Time:  49952.170 msec
+Round 21/100
+distance: 3
+Accuracy: 0.1377, 	 Round Time:  47241.660 msec
+Round 22/100
+distance: 45
+Accuracy: 0.1406, 	 Round Time:  47161.620 msec
+Round 23/100
+distance: 23
+Accuracy: 0.1414, 	 Round Time:  46951.961 msec
+Round 24/100
+distance: 11
+Accuracy: 0.1422, 	 Round Time:  46827.629 msec
+Round 25/100
+distance: 28
+Accuracy: 0.1439, 	 Round Time:  46791.048 msec
+Round 26/100
+distance: 47
+Accuracy: 0.1445, 	 Round Time:  46918.078 msec
+Round 27/100
+distance: 14
+Accuracy: 0.1479, 	 Round Time:  46930.165 msec
+Round 28/100
+distance: 11
+Accuracy: 0.1488, 	 Round Time:  46961.127 msec
+Round 29/100
+distance: 34
+Accuracy: 0.1516, 	 Round Time:  46950.332 msec
+Round 30/100
+distance: 4
+Client 62 dropped out
+participating_list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+dropout_count: 3
+new distance: 28
+Accuracy: 0.1465, 	 Round Time:  49539.666 msec
+Round 31/100
+distance: 21
+Accuracy: 0.1530, 	 Round Time:  46472.169 msec
+Round 32/100
+distance: 2
+Accuracy: 0.1539, 	 Round Time:  46707.449 msec
+Round 33/100
+distance: 42
+Accuracy: 0.1555, 	 Round Time:  47148.935 msec
+Round 34/100
+distance: 23
+Accuracy: 0.1586, 	 Round Time:  46777.580 msec
+Round 35/100
+distance: 25
+Accuracy: 0.1630, 	 Round Time:  46974.885 msec
+Round 36/100
+distance: 29
+Accuracy: 0.1649, 	 Round Time:  46839.830 msec
+Round 37/100
+distance: 15
+Accuracy: 0.1702, 	 Round Time:  47015.225 msec
+Round 38/100
+distance: 12
+Accuracy: 0.1736, 	 Round Time:  46976.225 msec
+Round 39/100
+distance: 30
+Accuracy: 0.1758, 	 Round Time:  47095.954 msec
+Round 40/100
+distance: 44
+Client 27 dropped out
+participating_list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+dropout_count: 4
+new distance: 23
+Accuracy: 0.1788, 	 Round Time:  49525.416 msec
+Round 41/100
+distance: 39
+Accuracy: 0.1865, 	 Round Time:  46343.138 msec
+Round 42/100
+distance: 29
+Accuracy: 0.1911, 	 Round Time:  46387.155 msec
+Round 43/100
+distance: 37
+Accuracy: 0.1951, 	 Round Time:  46572.234 msec
+Round 44/100
+distance: 25
+Accuracy: 0.1993, 	 Round Time:  46612.784 msec
+Round 45/100
+distance: 31
+Accuracy: 0.2013, 	 Round Time:  46365.752 msec
+Round 46/100
+distance: 10
+Accuracy: 0.2080, 	 Round Time:  46457.451 msec
+Round 47/100
+distance: 40
+Accuracy: 0.2097, 	 Round Time:  46244.661 msec
+Round 48/100
+distance: 28
+Accuracy: 0.2143, 	 Round Time:  46501.095 msec
+Round 49/100
+distance: 37
+Accuracy: 0.2161, 	 Round Time:  46290.814 msec
+Round 50/100
+distance: 38
+Client 89 dropped out
+participating_list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 88, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+dropout_count: 5
+new distance: 26
+Accuracy: 0.2176, 	 Round Time:  48536.388 msec
+Round 51/100
+distance: 39
+Accuracy: 0.2247, 	 Round Time:  45397.776 msec
+Round 52/100
+distance: 24
+Accuracy: 0.2256, 	 Round Time:  45465.014 msec
+Round 53/100
+distance: 23
+Accuracy: 0.2290, 	 Round Time:  45257.020 msec
+Round 54/100
+distance: 22
+Accuracy: 0.2343, 	 Round Time:  45625.647 msec
+Round 55/100
+distance: 6
+Accuracy: 0.2392, 	 Round Time:  45960.658 msec
+Round 56/100
+distance: 21
+Accuracy: 0.2420, 	 Round Time:  45915.290 msec
+Round 57/100
+distance: 5
+Accuracy: 0.2462, 	 Round Time:  45785.532 msec
+Round 58/100
+distance: 47
+Accuracy: 0.2462, 	 Round Time:  45840.164 msec
+Round 59/100
+distance: 32
+Accuracy: 0.2488, 	 Round Time:  46054.103 msec
+Round 60/100
+distance: 15
+Client 78 dropped out
+participating_list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85, 86, 88, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+dropout_count: 6
+new distance: 17
+Accuracy: 0.2539, 	 Round Time:  48628.327 msec
+Round 61/100
+distance: 31
+Accuracy: 0.2561, 	 Round Time:  45503.105 msec
+Round 62/100
+distance: 8
+Accuracy: 0.2566, 	 Round Time:  45259.416 msec
+Round 63/100
+distance: 39
+Accuracy: 0.2588, 	 Round Time:  45097.215 msec
+Round 64/100
+distance: 42
+Accuracy: 0.2642, 	 Round Time:  44934.861 msec
+Round 65/100
+distance: 7
+Accuracy: 0.2655, 	 Round Time:  45114.594 msec
+Round 66/100
+distance: 30
+Accuracy: 0.2681, 	 Round Time:  45643.068 msec
+Round 67/100
+distance: 45
+Accuracy: 0.2690, 	 Round Time:  45281.862 msec
+Round 68/100
+distance: 46
+Accuracy: 0.2724, 	 Round Time:  45855.720 msec
+Round 69/100
+distance: 17
+Accuracy: 0.2736, 	 Round Time:  45410.413 msec
+Round 70/100
+distance: 4
+Client 59 dropped out
+participating_list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 60, 61, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85, 86, 88, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+dropout_count: 7
+new distance: 11
+Accuracy: 0.2764, 	 Round Time:  48347.250 msec
+Round 71/100
+distance: 40
+Accuracy: 0.2747, 	 Round Time:  45012.400 msec
+Round 72/100
+distance: 21
+Accuracy: 0.2774, 	 Round Time:  44853.029 msec
+Round 73/100
+distance: 26
+Accuracy: 0.2800, 	 Round Time:  44952.709 msec
+Round 74/100
+distance: 3
+Accuracy: 0.2820, 	 Round Time:  45010.663 msec
+Round 75/100
+distance: 2
+Accuracy: 0.2847, 	 Round Time:  44707.322 msec
+Round 76/100
+distance: 41
+Accuracy: 0.2851, 	 Round Time:  44588.661 msec
+Round 77/100
+distance: 5
+Accuracy: 0.2883, 	 Round Time:  44541.105 msec
+Round 78/100
+distance: 42
+Accuracy: 0.2883, 	 Round Time:  44503.287 msec
+Round 79/100
+distance: 15
+Accuracy: 0.2900, 	 Round Time:  44739.067 msec
+Round 80/100
+distance: 25
+Client 40 dropped out
+participating_list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 60, 61, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85, 86, 88, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+dropout_count: 8
+new distance: 5
+Accuracy: 0.2936, 	 Round Time:  46705.630 msec
+Round 81/100
+distance: 18
+Accuracy: 0.2926, 	 Round Time:  43697.131 msec
+Round 82/100
+distance: 12
+Accuracy: 0.2952, 	 Round Time:  43678.161 msec
+Round 83/100
+distance: 15
+Accuracy: 0.2949, 	 Round Time:  43712.746 msec
+Round 84/100
+distance: 37
+Accuracy: 0.2976, 	 Round Time:  43953.425 msec
+Round 85/100
+distance: 8
+Accuracy: 0.3019, 	 Round Time:  43832.889 msec
+Round 86/100
+distance: 24
+Accuracy: 0.3031, 	 Round Time:  44046.924 msec
+Round 87/100
+distance: 14
+Accuracy: 0.3019, 	 Round Time:  43796.648 msec
+Round 88/100
+distance: 30
+Accuracy: 0.3024, 	 Round Time:  43952.761 msec
+Round 89/100
+distance: 12
+Accuracy: 0.3047, 	 Round Time:  43862.078 msec
+Round 90/100
+distance: 45
+Client 86 dropped out
+participating_list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 60, 61, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85, 88, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+dropout_count: 9
+new distance: 10
+Accuracy: 0.3064, 	 Round Time:  46086.549 msec
+Round 91/100
+distance: 24
+Accuracy: 0.3062, 	 Round Time:  43375.377 msec
+Round 92/100
+distance: 38
+Accuracy: 0.3055, 	 Round Time:  43299.022 msec
+Round 93/100
+distance: 27
+Accuracy: 0.3058, 	 Round Time:  43189.634 msec
+Round 94/100
+distance: 7
+Accuracy: 0.3066, 	 Round Time:  43152.318 msec
+Round 95/100
+distance: 42
+Accuracy: 0.3079, 	 Round Time:  43051.896 msec
+Round 96/100
+distance: 29
+Accuracy: 0.3087, 	 Round Time:  43283.154 msec
+Round 97/100
+distance: 26
+Accuracy: 0.3096, 	 Round Time:  43321.601 msec
+Round 98/100
+distance: 12
+Accuracy: 0.3100, 	 Round Time:  43212.393 msec
+Round 99/100
+distance: 36
+Accuracy: 0.3149, 	 Round Time:  43026.297 msec
+Round 100/100
+distance: 24
+Client 63 dropped out
+participating_list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 60, 61, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85, 88, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+dropout_count: 10
+new distance: 26
+Accuracy: 0.3157, 	 Round Time:  45193.082 msec
+Final test accuracy: 0.3157, 	 Total FL Time:  4681042.119 msec
